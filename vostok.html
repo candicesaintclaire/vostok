@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vostok — Excavate Your Brand Identity | archtiq.ai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --frozen-cyan: #B8ECFF;
+            --pale-glacier: #EAF9FF;
+            --ice-crystal: #8FD8FF;
+            --electric-sapphire: #1F6DFF;
+            --soft-polar: #EEF3F7;
+            --deep-slate: #1D2A38;
+            --carbon-gray: #0D1117;
+            --arctic-glow: #4B8CFF;
+            --glacial-fade: linear-gradient(135deg, #EAF9FF 0%, #8FD8FF 100%);
+            --arctic-current: linear-gradient(90deg, #B8ECFF 0%, #1F6DFF 100%);
+            --sapphire-depth: linear-gradient(180deg, #0A1B3D 0%, #1F6DFF 100%);
+            --polar-mist: linear-gradient(180deg, #EEF3F7 0%, #1D2A38 100%);
+            --archive-signal: linear-gradient(90deg, #0D1117 0%, #4B8CFF 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--carbon-gray);
+            color: var(--soft-polar);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(31, 109, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(75, 140, 255, 0.1) 0%, transparent 50%),
+                var(--carbon-gray);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(184, 236, 255, 0.03) 2px,
+                    rgba(184, 236, 255, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            border: 1px solid rgba(184, 236, 255, 0.2);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--frozen-cyan);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            background: rgba(184, 236, 255, 0.05);
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--electric-sapphire);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(180deg, var(--pale-glacier) 0%, var(--ice-crystal) 50%, var(--electric-sapphire) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 300;
+            color: rgba(238, 243, 247, 0.7);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.5;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            background: var(--arctic-current);
+            color: var(--carbon-gray);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(31, 109, 255, 0.3);
+        }
+
+        .hero-cta svg {
+            transition: transform 0.3s ease;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        .depth-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(184, 236, 255, 0.4);
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .depth-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(180deg, var(--frozen-cyan) 0%, transparent 100%);
+            animation: depth-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes depth-pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* --- SECTIONS --- */
+        section {
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--electric-sapphire);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(31, 109, 255, 0.3) 0%, transparent 100%);
+            max-width: 100px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--pale-glacier);
+        }
+
+        .section-body {
+            font-size: 1.1rem;
+            color: rgba(238, 243, 247, 0.65);
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        /* --- THE PROBLEM --- */
+        .problem {
+            background: linear-gradient(180deg, var(--carbon-gray) 0%, rgba(29, 42, 56, 0.5) 100%);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .problem-card {
+            padding: 2rem;
+            border: 1px solid rgba(184, 236, 255, 0.08);
+            border-radius: 8px;
+            background: rgba(13, 17, 23, 0.6);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
+        }
+
+        .problem-card:hover {
+            border-color: rgba(31, 109, 255, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .problem-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            color: var(--frozen-cyan);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .problem-card p {
+            font-size: 0.95rem;
+            color: rgba(238, 243, 247, 0.5);
+            line-height: 1.7;
+        }
+
+        /* --- THE METAPHOR --- */
+        .metaphor {
+            background: var(--deep-slate);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metaphor::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(31, 109, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .metaphor-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .metaphor-visual {
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ice-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2rem 0;
+        }
+
+        .ice-stratum {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, rgba(184, 236, 255, 0.3) 50%, transparent 100%);
+            position: relative;
+        }
+
+        .ice-stratum::after {
+            content: attr(data-depth);
+            position: absolute;
+            right: 0;
+            top: -10px;
+            font-size: 0.65rem;
+            color: rgba(184, 236, 255, 0.4);
+            letter-spacing: 0.1em;
+        }
+
+        .lake-vostok {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 80px;
+            background: radial-gradient(ellipse, rgba(31, 109, 255, 0.4) 0%, rgba(75, 140, 255, 0.1) 60%, transparent 100%);
+            border-radius: 50%;
+            filter: blur(20px);
+            animation: lake-glow 4s ease-in-out infinite;
+        }
+
+        @keyframes lake-glow {
+            0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+        }
+
+        .drill-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--frozen-cyan) 0%, var(--electric-sapphire) 100%);
+            opacity: 0.6;
+            animation: drill-down 6s ease-in-out infinite;
+        }
+
+        @keyframes drill-down {
+            0%, 100% { transform: translateX(-50%) scaleY(0); transform-origin: top; }
+            50% { transform: translateX(-50%) scaleY(1); transform-origin: top; }
+        }
+
+        /* --- HOW IT WORKS --- */
+        .how-it-works {
+            background: var(--carbon-gray);
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: start;
+            padding: 2rem;
+            border-left: 2px solid rgba(31, 109, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            border-left-color: var(--electric-sapphire);
+            background: rgba(31, 109, 255, 0.03);
+        }
+
+        .step-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: rgba(31, 109, 255, 0.2);
+            line-height: 1;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .step-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            color: var(--pale-glacier);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .step-content p {
+            color: rgba(238, 243, 247, 0.6);
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        /* --- INTERACTIVE DEMO --- */
+        .demo {
+            background: linear-gradient(180deg, rgba(29, 42, 56, 0.8) 0%, var(--carbon-gray) 100%);
+            padding: 6rem 2rem;
+        }
+
+        .demo-frame {
+            max-width: 700px;
+            margin: 3rem auto 0;
+            border: 1px solid rgba(184, 236, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--soft-polar);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+        }
+
+        .demo-header {
+            padding: 1rem 1.5rem;
+            background: rgba(238, 243, 247, 0.8);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .demo-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ccc;
+        }
+
+        .demo-dot:nth-child(1) { background: #ff5f57; }
+        .demo-dot:nth-child(2) { background: #febc2e; }
+        .demo-dot:nth-child(3) { background: #28c840; }
+
+        .demo-title {
+            margin-left: auto;
+            font-size: 0.75rem;
+            color: #888;
+            letter-spacing: 0.05em;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .demo-body {
+            padding: 3rem 2rem;
+            background: #fafafa;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .demo-question {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #999;
+            text-align: center;
+        }
+
+        .demo-choices {
+            display: flex;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .demo-choice {
+            flex: 1;
+            padding: 2.5rem 1.5rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            user-select: none;
+        }
+
+        .demo-choice:hover {
+            border-color: var(--electric-sapphire);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(31, 109, 255, 0.15);
+        }
+
+        .demo-choice.selected {
+            border-color: var(--electric-sapphire);
+            background: rgba(31, 109, 255, 0.05);
+        }
+
+        .demo-progress {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .demo-progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #999;
+            margin-bottom: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .demo-progress-bar {
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .demo-progress-fill {
+            height: 100%;
+            background: var(--electric-sapphire);
+            border-radius: 2px;
+            transition: width 0.6s ease;
+            width: 0%;
+        }
+
+        .demo-result {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .demo-result h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .demo-result p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .demo-restart {
+            padding: 0.75rem 1.5rem;
+            background: var(--electric-sapphire);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .demo-restart:hover {
+            background: var(--arctic-glow);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- PHILOSOPHY --- */
+        .philosophy {
+            background: var(--deep-slate);
+            text-align: center;
+        }
+
+        .philosophy .section-title {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .philosophy .section-body {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .philosophy-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--arctic-current);
+            margin: 3rem auto;
+        }
+
+        .philosophy-quote {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--frozen-cyan);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 4rem 2rem 2rem;
+            background: var(--carbon-gray);
+            border-top: 1px solid rgba(184, 236, 255, 0.05);
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-owl {
+            width: 40px;
+            height: 40px;
+            border: 1.5px solid var(--frozen-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .footer-owl::before {
+            content: '◆';
+            color: var(--frozen-cyan);
+            font-size: 0.8rem;
+        }
+
+        .footer-brand-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            color: var(--pale-glacier);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-brand-tag {
+            font-size: 0.7rem;
+            color: rgba(238, 243, 247, 0.4);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(238, 243, 247, 0.5);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--frozen-cyan);
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(184, 236, 255, 0.05);
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(238, 243, 247, 0.3);
+            letter-spacing: 0.05em;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .metaphor-content {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-brand {
+                justify-content: center;
+            }
+            .footer-links {
+                justify-content: center;
+            }
+            .demo-choices {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">archtiq.ai Presents</div>
+            <h1>Vostok</h1>
+            <p class="hero-subtitle">
+                A semantic excavation tool for brand identity. When you know exactly what you don't want—but can't articulate what you do.
+            </p>
+            <a href="#demo" class="hero-cta">
+                Try the Excavation
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 8h10M9 4l4 4-4 4"/>
+                </svg>
+            </a>
+        </div>
+        <div class="depth-indicator">
+            <span>Depth</span>
+            <div class="depth-line"></div>
+            <span>4,000m</span>
+        </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <div class="section-label">The Surface</div>
+            <h2 class="section-title">You have spent hours describing what you don't want.</h2>
+            <p class="section-body">
+                Three five-hour sessions with frontier AI design tools. A hundred rejected concepts. A growing list of "not this, not that, definitely not this either." The closer you get to describing your vision, the further it drifts. The problem isn't your taste—it's the tool's assumption that you already know how to name what you're looking for.
+            </p>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>Semantic Friction</h3>
+                    <p>You feel the vibe in your chest, but every word you reach for collapses it into something generic. "Minimalist" becomes sterile. "Bold" becomes loud. The language available to you flattens the specificity of your intent.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>Cluster Blindness</h3>
+                    <p>Standard AI tools search the dense neighborhood of what you've already seen. If your vision lives outside that cluster, the algorithm will never surface it. You need to go broader—much broader.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>Visual Pollution</h3>
+                    <p>Every mockup you receive influences your next preference. The tool's own aesthetic leaks into your decision-making before you've even made one. You need a neutral surface—zero influence, zero styling.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE METAPHOR -->
+    <section class="metaphor" id="metaphor">
+        <div class="container">
+            <div class="metaphor-content">
+                <div>
+                    <div class="section-label">The Lake</div>
+                    <h2 class="section-title">What exists beneath the ice is already perfect.</h2>
+                    <p class="section-body">
+                        Lake Vostok is a subglacial lake buried under four kilometers of Antarctic ice, isolated from the atmosphere for somewhere between 15 and 25 million years. Perfectly preserved. Untouched. The drilling project to reach it took decades. And what they found when they got there was something that had existed all along, completely intact—just unreachable from the surface.
+                    </p>
+                    <p class="section-body" style="margin-top: 1.5rem;">
+                        <strong style="color: var(--frozen-cyan);">Vostok does not generate your brand identity.</strong> It excavates what was already down there, preserved under all the noise and the failed sessions and the lists of what you don't want.
+                    </p>
+                </div>
+                <div class="metaphor-visual">
+                    <div class="ice-layer">
+                        <div class="ice-stratum" data-depth="0m"></div>
+                        <div class="ice-stratum" data-depth="1,000m"></div>
+                        <div class="ice-stratum" data-depth="2,000m"></div>
+                        <div class="ice-stratum" data-depth="3,000m"></div>
+                        <div class="ice-stratum" data-depth="4,000m"></div>
+                    </div>
+                    <div class="drill-line"></div>
+                    <div class="lake-vostok"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="how">
+        <div class="container">
+            <div class="section-label">The Drill</div>
+            <h2 class="section-title">How the excavation works.</h2>
+            <p class="section-body">
+                Vostok uses a binary semantic tournament to navigate the vast space of possible aesthetic directions. No images. No mockups. No influence. Just words—rich, semantically heavy words—and your instinctive preference.
+            </p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Ingestion</h3>
+                        <p>You provide what you have: what the brand is, what it does, who it's for, and—crucially—what you don't want. Vostok absorbs this context without judgment. The more "don't wants" you have, the better. They are coordinates, not obstacles.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Semantic Broadening</h3>
+                        <p>Instead of clustering around your stated preferences, Vostok runs a k-nearest-neighbors search with deliberately distant neighbors. It looks far outside the aesthetic cluster that has failed you. The algorithm is calibrated to escape the gravity of what you've already seen.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>The Tournament</h3>
+                        <p>Vostok presents two words at a time. They are opposites, but not obvious ones. They are semantically dense—words that evoke texture, temperature, weight, light. You pick the one that feels closer to what you cannot yet name. The tournament runs in rounds, with similar-but-not-identical words surfacing to refine your position.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Convergence</h3>
+                        <p>A live progress indicator shows your convergence toward a coherent vision. Stop at 78% for a rough directional sketch, or push to 95% for high-confidence output. You decide when the excavation is deep enough.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h3>Surfacing</h3>
+                        <p>Once convergence is reached, Vostok generates a low-fidelity brand board: color direction, typographic temperament, spatial rhythm, and mood keywords. No polished mockups. Just the raw mineral of your identity, finally brought to light.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE DEMO -->
+    <section class="demo" id="demo">
+        <div class="container" style="text-align: center;">
+            <div class="section-label">Live Excavation</div>
+            <h2 class="section-title" style="color: var(--pale-glacier);">Experience the tournament.</h2>
+            <p class="section-body" style="margin: 0 auto;">
+                This is a simplified preview. The real Vostok interface is deliberately plain—no styling, no visual influence. Just you and the words.
+            </p>
+        </div>
+        <div class="demo-frame">
+            <div class="demo-header">
+                <div class="demo-dot"></div>
+                <div class="demo-dot"></div>
+                <div class="demo-dot"></div>
+                <div class="demo-title">vostok.exe — semantic_excavation</div>
+            </div>
+            <div class="demo-body" id="demo-body">
+                <div class="demo-question">Which word resonates more with your brand?</div>
+                <div class="demo-choices" id="demo-choices">
+                    <div class="demo-choice" data-choice="0" onclick="makeChoice(0)">Abyssal</div>
+                    <div class="demo-choice" data-choice="1" onclick="makeChoice(1)">Luminous</div>
+                </div>
+                <div class="demo-progress">
+                    <div class="demo-progress-label">
+                        <span>Excavation Depth</span>
+                        <span id="progress-text">0%</span>
+                    </div>
+                    <div class="demo-progress-bar">
+                        <div class="demo-progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="demo-body" id="demo-result" style="display: none;">
+                <div class="demo-result">
+                    <h4>Excavation Complete</h4>
+                    <p>Your semantic profile has converged. In a full session, Vostok would now generate your brand board based on these preferences: <strong>crystalline depth, archival precision, quiet authority.</strong></p>
+                    <button class="demo-restart" onclick="restartDemo()">Restart Excavation</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section class="philosophy" id="philosophy">
+        <div class="container">
+            <div class="section-label">The Core</div>
+            <h2 class="section-title">Generation is noise. Excavation is truth.</h2>
+            <p class="section-body">
+                Most AI design tools try to generate something impressive. Vostok assumes the impressive thing already exists inside you—buried under layers of bad references, Pinterest fatigue, and the anxiety of not being able to describe what you see in your head. The tool's job is not to be creative. It is to remove everything that isn't your creativity.
+            </p>
+            <div class="philosophy-divider"></div>
+            <p class="philosophy-quote">
+                "We did not create Lake Vostok. We simply drilled long enough to reach what was already there."
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-owl"></div>
+                <div>
+                    <div class="footer-brand-text">archtiq.ai</div>
+                    <div class="footer-brand-tag">Archival Intelligence</div>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="#problem">The Problem</a>
+                <a href="#how">How It Works</a>
+                <a href="#demo">Demo</a>
+                <a href="#philosophy">Philosophy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Precision. Preservation. Intelligence. — archtiq.ai
+        </div>
+    </footer>
+
+    <script>
+        const rounds = [
+            ['Abyssal', 'Luminous'],
+            ['Fractured', 'Seamless'],
+            ['Woven', 'Carved'],
+            ['Distant', 'Immediate'],
+            ['Muted', 'Resonant'],
+            ['Layered', 'Monolithic'],
+            ['Tidal', 'Static'],
+            ['Frosted', 'Burnished']
+        ];
+        let currentRound = 0;
+        const totalRounds = rounds.length;
+
+        function makeChoice(choiceIndex) {
+            const choices = document.querySelectorAll('.demo-choice');
+            choices.forEach((c, i) => {
+                c.classList.toggle('selected', i === choiceIndex);
+            });
+
+            setTimeout(() => {
+                currentRound++;
+                const progress = Math.round((currentRound / totalRounds) * 100);
+                document.getElementById('progress-fill').style.width = progress + '%';
+                document.getElementById('progress-text').textContent = progress + '%';
+
+                if (currentRound >= totalRounds) {
+                    document.getElementById('demo-body').style.display = 'none';
+                    document.getElementById('demo-result').style.display = 'flex';
+                } else {
+                    choices[0].textContent = rounds[currentRound][0];
+                    choices[1].textContent = rounds[currentRound][1];
+                    choices.forEach(c => c.classList.remove('selected'));
+                }
+            }, 400);
+        }
+
+        function restartDemo() {
+            currentRound = 0;
+            document.getElementById('progress-fill').style.width = '0%';
+            document.getElementById('progress-text').textContent = '0%';
+            document.getElementById('demo-body').style.display = 'flex';
+            document.getElementById('demo-result').style.display = 'none';
+            const choices = document.querySelectorAll('.demo-choice');
+            choices[0].textContent = rounds[0][0];
+            choices[1].textContent = rounds[0][1];
+            choices.forEach(c => c.classList.remove('selected'));
+        }
+    </script>
+</body>
+</html>
